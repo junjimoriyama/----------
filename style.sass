@@ -1,0 +1,141 @@
+@charset "utf-8"
+
+@use "var" as var
+@use "mixin" as mixin
+
+// 基本
+*, *::before, *::after
+  box-sizing: border-box
+
+html
+  font-size: 62.5%
+
+  body
+    position: relative
+    // スクロールさせない
+    overflow: hidden
+
+    .first_view
+      z-index: 10
+      background-color: #fff
+      will-change: transform
+      display: none
+
+      &.erase
+        display: none
+
+      .inner
+        width: min(1080px, 100%)
+        height: 100vh
+        display: grid
+        place-items: center
+
+        .title
+          +mixin.fontStatus()
+          font-size: 5rem
+          text-align: center
+
+        .enter_button
+          +mixin.fontStatus()
+          width: 200px
+          height: 100px
+          background-color: #333
+          color: #fff
+          font-size: 3rem
+          padding: 10px
+          border-radius: 5px
+          display: grid
+          place-items: center
+          cursor: pointer
+          transition: .5s
+
+          &:hover
+            opacity: .5
+
+    .main
+      // visibility: hidden
+      visibility: visible
+
+      &.isActive
+        width: min(1080px, 100%)
+        height: 100vh
+        visibility: visible
+
+      .inner
+        margin: 20px
+        display: grid
+        place-items: center
+
+        .both
+          display: flex
+          gap: 30px
+
+          .name
+            font-size: 3rem
+            text-align: center
+
+          .myself
+            margin-top: 50px
+
+            .myHandImgWrap
+              width: 200px
+              height: 200px
+              border: 1px solid #000
+              border-radius: 10px
+              display: grid
+              place-items: center
+
+              img
+                width: 70%
+                height: auto
+                object-fit: cover
+
+          .pc
+            margin-top: 50px
+
+            .pcHandImgWrap
+              width: 200px
+              height: 200px
+              border: 1px solid #000
+              border-radius: 10px
+              display: grid
+              place-items: center
+
+              img
+                width: 70%
+                height: auto
+                object-fit: cover
+
+        .myhandBtns
+          margin-top: 50px
+          font-size: 2rem
+          transition: .5s
+          display: flex
+          gap: 20px
+
+          .stoneBtn
+            +mixin.myhandEachBtns(palevioletred)
+            
+          .scissorBtn
+            +mixin.myhandEachBtns(cornflowerblue)
+
+          .paperBtn
+            +mixin.myhandEachBtns(seagreen)
+
+        
+        .judge
+          width: 100px
+          height: 100px
+          border: 1px solid #000
+          border-radius: 10px
+          margin-top: 50px
+          font-size: 3rem
+          display: grid
+          place-items: center
+
+        .result
+          display: flex
+          margin-top: 50px
+          font-size: 3rem
+          .winResult
+          .loseResult

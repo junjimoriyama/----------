@@ -1,81 +1,162 @@
-const imageTotalNumber = 6,
-      mainImageElement = document.getElementById('mainImage'),
-      imageListElement = document.getElementById('imageList'),
-      prevImageElement = document.getElementById('prevImage'),
-      nextImageElement = document.getElementById('nextImage');
-      
-let currentSlideNumber = 1
 
-/* if (currentSlideNumber === 1) {
-  prevImageElement.classList.add('inActive')
-}
- */
-// setAttributeで属性と値を与えメインの画面を表示する
-mainImageElement.setAttribute('src', 'img/img1.jpg')
+/* 表示画面の切り替え ==========================================*/
 
-function changeSlideStatus () {
-  if (currentSlideNumber === 1) {
-    prevImageElement.classList.add('inActive')
-  }else {
-    prevImageElement.classList.remove('inActive')
-  }
-  
-  if (currentSlideNumber === imageTotalNumber) {
-    nextImageElement.classList.add('inActive')
-  }else {
-    nextImageElement.classList.remove('inActive')
-  }
-
-  document.getElementById('currentSlideNumber').textContent = `${currentSlideNumber} / ${imageTotalNumber}`
-}
-changeSlideStatus ()
-
-// 写真の枚数分、for文を回す。
-for (let i = 0; i < imageTotalNumber; i++) {
-// 変数をliElementとし、js上にliタグを作る
-  const liElement = document.createElement('li')
-// 変数liElementにbackgroundImageのurlで写真を枚数分取得する
-  liElement.style.backgroundImage = `url(img/img${i + 1}.jpg)`
-// 変数liElementをクリックした場合
-  liElement.addEventListener('click', () => {
-// メインの写真に枚数分、setAttributeで属性と値を与え表示できるようにする
-  mainImageElement.setAttribute('src', `img/img${i + 1}.jpg`)
-  currentSlideNumber = i + 1
-  changeSlideStatus ()
-  });
-
-  imageListElement.appendChild(liElement)
-};
-
-// 上の記述とは別物として考える。
-
-
-prevImageElement.addEventListener('click', () => {
-  // 変数currentSlideNumberを「1」とする
-  if (currentSlideNumber !== 1) {
-    // 変数currentSlideNumberを「1」ずつ減らしていく
-    currentSlideNumber--
-    mainImageElement.setAttribute('src', `img/img${currentSlideNumber}.jpg`)
-    changeSlideStatus ()
-  }
+// 初めの画面
+const first_view = document.querySelector('.first_view')
+// enterボタン
+const enterButton = document.getElementById('enter_button')
+// enterボタンをクリックしたら
+enterButton.addEventListener('click', () => {
+	// 初めの画面をdisplay:noneへ
+	first_view.classList.add('erase')
+	// main画面表示
+	document.querySelector('.main').classList.add('isActive')
 })
 
-nextImageElement.addEventListener('click', () => {
-  // 変数currentSlideNumberをimageTotalNumber「6」とする
-  if (currentSlideNumber !== imageTotalNumber) {
-   // 変数currentSlideNumberを「1」ずつ増やしていく
-    currentSlideNumber++
-    mainImageElement.setAttribute('src', `img/img${currentSlideNumber}.jpg`)
-    changeSlideStatus ()
-  }
+/* じゃんけん ==========================================*/
+
+// pcの画像　1:グー　２:チョキ　３:パー
+const pcHandImgs = ["img/img1.png","img/img2.png","img/img3.png"]
+
+// グー、チョキ、パーの各ボタン取得
+const stoneBtn = document.querySelector('.stoneBtn'),
+	paperBtn = document.querySelector('.paperBtn'),
+	scissorBtn = document.querySelector('.scissorBtn')
+
+//勝敗結果を表示する場所 
+const winResult =	document.getElementById('winResult')
+const loseResult =	document.getElementById('loseResult')
+// 勝敗のカウント初期値０
+let winCounter = 0;
+let loseCounter = 0;
+
+const myhandBtns = document.querySelector('.myhandBtns')
+
+
+	// じゃんけんする関数
+	// 引数（１:プレイヤーの写真番号　２:あいこになるpcの番号　3:プレイヤーが勝つpcの番号）
+	function myhandChoice(imgNum, aikoNum, winNum) {
+		
+		// 敵の番号を1~3よりランダムで出す(+1)する
+		const pcNum =  Math.floor(Math.random() * 3) +1
+		// プレイヤーのじゃんけん画像を入れる
+		myHandImg.setAttribute('src', `img/img${imgNum}.png`)
+		// pcのじゃんけん画像を入れる
+		pcHandImg.setAttribute('src', `img/img${pcNum}.png`)
+		// 勝敗を表示する要素
+		const judge = document.querySelector('.judge')
+    // もしあいこだった場合
+		if(pcNum === aikoNum) {
+			judge.textContent = 'あいこ'
+		// もし勝った場合
+		} else if (pcNum === winNum){
+			judge.textContent = '勝ち'
+			winCounter++
+			winResult.textContent = `${winCounter}勝`
+		// もし負けた場合
+		} else {
+			judge.textContent = '負け'
+			loseCounter++
+			loseResult.textContent = `${loseCounter}敗`
+		}
+	}
+// const myHandImg = document.getElementById('myHandImg')
+	// グーのボタン押す
+	stoneBtn.addEventListener('click', () => {
+		myhandChoice(1, 1, 2)
+		victoryOrDefeat()
+	})
+	// チョキのボタン押す
+	paperBtn.addEventListener('click', () => {
+		myhandChoice(2, 2, 3)
+		victoryOrDefeat()
+	})
+	// パーのボタン押す
+	scissorBtn.addEventListener('click', () => {
+		myhandChoice(3, 3, 1)
+		victoryOrDefeat()
+	})
+
+	// 勝敗を判定する関数
+	function victoryOrDefeat() {
+		// プレイヤーの結果を表示する場所
+		const yourResult = document.getElementById('yourResult')
+		// 3勝したら
+		if (winCounter >= 3) {
+			yourResult.textContent = 'あなたの勝ち'
+			myhandBtns.style.pointerEvents = 'none'
+			// 結果をリセット　※1
+			setTimeout(resetResult, 1000)
+			
+		}
+		// 3敗したら
+		if (loseCounter >= 3) {
+			// ※1
+			yourResult.textContent = 'あなたの負け'
+			myhandBtns.style.pointerEvents = 'none'
+			setTimeout(resetResult, 1000)
+		}
+	}
+
+	const judge = document.querySelector('.judge')
+	// 結果などをリセットする関数
+	function resetResult() {
+		myHandImg.setAttribute('src', '')
+		pcHandImg.setAttribute('src', '')
+		judge.textContent = ''
+		winResult.textContent = '0勝'
+		loseResult.textContent = '0敗'
+		winCounter = 0
+		loseCounter = 0
+		yourResult.textContent = ''
+		// ボタンを押せるようにする
+		myhandBtns.style.pointerEvents = 'auto'
+	}
+	
+/* gsapアニメーション ==========================================*/
+// 初めの画面の画像
+const firstViewImg = document.querySelector('.first_view_img')
+
+// gsapの処理（set）
+gsap.set(firstViewImg, {
+	opacity: 0,
 })
+gsap.set(enterButton, {
+	y: '100px',
+	scale: 0.5
+})
+// gsapの処理（timeline）
+const tl = gsap.timeline()
+tl.to(firstViewImg, 1, {
+	opacity: 1,
+	rotation: 360,
+	y: 0,
+	delay: 0.3
+})
+.to(enterButton, 1, {
+	y: '0',
+	scale: 1,
+	ease: 'power2.in'
+}, .2)
 
 
-    /* someText.removeChild()
-    console.log(someText)
-    someText.innerHTML = currentSlideNumber */
+// paperBtn.addEventListener('click', () => {
+	// 	const pcNum =  Math.floor(Math.random() * 3) +1
+	// 	const	stoneImg = document.createElement('img')
+	// 	myHand.appendChild(stoneImg)
+	// 	stoneImg.setAttribute('src', 'img/img2.png')
+	// 	stoneImg.setAttribute('id', '1')
+	// 	pcImg.setAttribute('src', `img/img${index}.png`)
+		
+	// if( index === 1) {
+	// 	console.log('負け')
+	// } else if (index === 2){
+	// 	console.log('あいこ')
+	// } else {
+	// 	console.log('勝ち')
+	// }
+	// })
 
-// 画像名を配列にするex)a[]=名前。jpgなど
 
-/* someTextCount = someText.content
-    console.log(someTextCount) */
+
+

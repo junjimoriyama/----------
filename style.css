@@ -1,18 +1,165 @@
-@charset "utf-8";
-
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
-.container {
-
-  width: calc(100% - 20px);
-  height: 70px;
+html {
+  font-size: 62.5%;
+}
+html body {
+  position: relative;
+  overflow: hidden;
+}
+html body .first_view {
+  z-index: 10;
+  background-color: #fff;
+  will-change: transform;
+  display: none;
+}
+html body .first_view.erase {
+  display: none;
+}
+html body .first_view .inner {
+  width: min(1080px, 100%);
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+html body .first_view .inner .title {
+  font-family: ab-koki-maru, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 5rem;
+  text-align: center;
+}
+html body .first_view .inner .enter_button {
+  font-family: ab-koki-maru, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  width: 200px;
+  height: 100px;
   background-color: #333;
+  color: #fff;
+  font-size: 3rem;
+  padding: 10px;
+  border-radius: 5px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: 0.5s;
 }
-
-.sec {
-  width:100%;
-  height: 30px;
-  background-color: aquamarine;
+html body .first_view .inner .enter_button:hover {
+  opacity: 0.5;
 }
+html body .main {
+  visibility: visible;
+}
+html body .main.isActive {
+  width: min(1080px, 100%);
+  height: 100vh;
+  visibility: visible;
+}
+html body .main .inner {
+  margin: 20px;
+  display: grid;
+  place-items: center;
+}
+html body .main .inner .both {
+  display: flex;
+  gap: 30px;
+}
+html body .main .inner .both .name {
+  font-size: 3rem;
+  text-align: center;
+}
+html body .main .inner .both .myself {
+  margin-top: 50px;
+}
+html body .main .inner .both .myself .myHandImgWrap {
+  width: 200px;
+  height: 200px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+}
+html body .main .inner .both .myself .myHandImgWrap img {
+  width: 70%;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+html body .main .inner .both .pc {
+  margin-top: 50px;
+}
+html body .main .inner .both .pc .pcHandImgWrap {
+  width: 200px;
+  height: 200px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+}
+html body .main .inner .both .pc .pcHandImgWrap img {
+  width: 70%;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+html body .main .inner .myhandBtns {
+  margin-top: 50px;
+  font-size: 2rem;
+  transition: 0.5s;
+  display: flex;
+  gap: 20px;
+}
+html body .main .inner .myhandBtns .stoneBtn {
+  background-color: palevioletred;
+  color: #fff;
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 10px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+html body .main .inner .myhandBtns .stoneBtn:hover {
+  transform: scale(1.2);
+}
+html body .main .inner .myhandBtns .scissorBtn {
+  background-color: cornflowerblue;
+  color: #fff;
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 10px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+html body .main .inner .myhandBtns .scissorBtn:hover {
+  transform: scale(1.2);
+}
+html body .main .inner .myhandBtns .paperBtn {
+  background-color: seagreen;
+  color: #fff;
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 10px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+html body .main .inner .myhandBtns .paperBtn:hover {
+  transform: scale(1.2);
+}
+html body .main .inner .judge {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  margin-top: 50px;
+  font-size: 3rem;
+  display: grid;
+  place-items: center;
+}
+html body .main .inner .result {
+  display: flex;
+  margin-top: 50px;
+  font-size: 3rem;
+}/*# sourceMappingURL=style.css.map */

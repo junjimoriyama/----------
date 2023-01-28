@@ -5,19 +5,77 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>slide show</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@1.0.15/destyle.css"/>
+  <title>じゃんけんアプリ</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@1.0.15/destyle.css" />
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script> /* アドビフォント */
+    (function (d) {
+      var config = {
+        kitId: 'qwv5fgw',
+        scriptTimeout: 3000,
+        async: true
+      },
+        h = d.documentElement, t = setTimeout(function () { h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.className += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
+    })(document);
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"
+    integrity="sha512-A64Nik4Ql7/W/PJk2RNOmVyC/Chobn5TY08CiKEX50Sdw+33WTOpPJ/63bfWPl0hxiRv1trPs5prKO8CpA7VNQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="script.js" defer></script>
 </head>
 
 <body>
-    <main>
-      <div class="container">
-        <div class="sec"></div>
+  <div class="first_view">
+
+    <div class="inner">
+      <h1 class="title">じゃんけん<br>ゲーム</h1>
+      <img class="first_view_img" src="img/sps_first_view.jpg" alt="">
+      <div id="enter_button" class="enter_button">ENTER</div>
+    </div>
+  </div>
+
+  <main class="main">
+    <div class="inner">
+
+    <div class="both">
+      <div class="myself">
+        <div class="name">プレイヤー</div>
+        <div class="myHandImgWrap">
+          <img id="myHandImg">
+        </div>
       </div>
-    </main>
+        <div class="pc">
+          <div class="name">コンピューター</div>
+          <div class="pcHandImgWrap">
+            <img id="pcHandImg">
+          </div>
+        </div>
+    </div>
+
+        <ul class="myhandBtns">
+          <li class="stoneBtn">グー</li>
+          <li class="paperBtn">チョキ</li>
+          <li class="scissorBtn">パー</li>
+        </ul>
+
+
+      <div class="judge"></div>
+
+      <div class="result">
+        <div id="winResult">0勝</div>
+        <div id="loseResult">0敗</div>
+      </div>
+      <div id="winner"></div>
+      <div id="yourResult"></div>
+    </div>
+
+  </main>
 </body>
 
 </html>
+
+<!-- <img src="img/img1.png" alt="グー">
+        <img src="img/img2.png" alt="パー">
+        <img src="img/img3.png" alt="チョキ"> -->
