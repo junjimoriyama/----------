@@ -32,50 +32,63 @@
     <div class="inner">
       <h1 class="title">じゃんけん<br>ゲーム</h1>
       <img class="first_view_img" src="img/sps_first_view.jpg" alt="">
-      <div id="enter_button" class="enter_button">ENTER</div>
+      <div id="enter_button" class="enter_button">START</div>
     </div>
   </div>
 
   <main class="main">
     <div class="inner">
 
-    <div class="both">
-      <div class="myself">
-        <div class="name">プレイヤー</div>
-        <div class="myHandImgWrap">
-          <img id="myHandImg">
+      <div class="both">
+
+        <div class="myself">
+          <div class="name">プレイヤー</div>
+          <div class="myHandImgWrap">
+            <img id="myHandImg">
+          </div>
+          <!-- 星が入るスペース -->
+          <div class="myAddStarWrap"></div>
+          
         </div>
-      </div>
+
         <div class="pc">
           <div class="name">コンピューター</div>
           <div class="pcHandImgWrap">
             <img id="pcHandImg">
           </div>
+          <!-- 星が入るスペース -->
+          <div class="pcAddStarWrap"></div>
         </div>
-    </div>
-
-        <ul class="myhandBtns">
-          <li class="stoneBtn">グー</li>
-          <li class="paperBtn">チョキ</li>
-          <li class="scissorBtn">パー</li>
-        </ul>
-
+      </div>
 
       <div class="judge"></div>
 
-      <div class="result">
-        <div id="winResult">0勝</div>
-        <div id="loseResult">0敗</div>
-      </div>
-      <div id="winner"></div>
-      <div id="yourResult"></div>
-    </div>
+      <ul class="myhandBtns">
+        <li class="stoneBtn">グー</li>
+        <li class="paperBtn">チョキ</li>
+        <li class="scissorBtn">パー</li>
+      </ul>
 
+      <div class="result"></div>
+
+      <div id="myResult" class="myResult">結果：  勝  敗</div>
+
+      <div id="resetBtn" class="resetBtn">RESET</div>
+
+      <div id="rule" class="rule">ルール</div>
+      <div id="ruleBook" class="ruleBook">
+        <div class="ruleBookInner">
+          <ul>
+            <li>・じゃんけんに勝った方に星が付く。</li>
+            <li>・先に星が三つ付いた方が勝ちとなる</li>
+          </ul>
+        </div>
+        <div id="modalCloseButton" class="fa fa-close"></div>
+      </div>
+
+    <div id="mask" class="mask"></div>
+
+    </div>
   </main>
 </body>
-
 </html>
-
-<!-- <img src="img/img1.png" alt="グー">
-        <img src="img/img2.png" alt="パー">
-        <img src="img/img3.png" alt="チョキ"> -->
